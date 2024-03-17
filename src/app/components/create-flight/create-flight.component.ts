@@ -9,6 +9,7 @@ import { AirlineModel } from '../../models/airline.model';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
+import { DataNormailizationService } from '../../services/data-normailization.service';
 
 @Component({
   selector: 'app-create-flight',
@@ -30,7 +31,12 @@ export class CreateFlightComponent {
   public airlines: AirlineModel[] = [];
   public createFlightForm: FormGroup;
 
-  constructor(private _baseHttpService: BaseHttpService){
+  public loading: boolean = false;
+
+  constructor(
+    private _baseHttpService: BaseHttpService, 
+    private _dataNormalizationService: DataNormailizationService
+  ){
 
     this.getCities();
     this.getAirlines();
@@ -60,8 +66,13 @@ export class CreateFlightComponent {
     })
   }
 
-  test(){
-    console.log(this.createFlightForm.value)
+  /**
+   * Creates a new flight in the database
+   */
+  public createFlight(){
+    this.loading = true;
+    const body = this._dataNormalizationService.serializeFlightBody(this.createFlightForm.value);
+    console.log(body)
   }
   
 }
