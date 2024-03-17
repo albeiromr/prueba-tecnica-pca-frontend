@@ -23,5 +23,7 @@ export const routes: Routes = [
         path: "statistics",
         pathMatch: "full",
         component: StatisticsComponent
-    }
+    },
+    // Other routes
+    { path: '**', redirectTo: "create-flight" }
 ];
