@@ -6,7 +6,7 @@
         <p class="header-text">Fecha de llegada</p>
         <p class="header-text">Precio tiquete</p>
     </div>
-    
+
     @for(flight of flights; track flight.flightCode){
         <div class="flight-card">
             <img src="assets/plane.png" alt="plane icon">
@@ -14,8 +14,10 @@
             <p class="flight-text">{{getReadableDate(flight.departureDate)}}</p>
             <p class="flight-text">{{getReadableDate(flight.arrivalDate)}}</p>
             <p class="flight-text">${{flight.flightPrice}}</p>
-            <p-button label="Reservar asiento" severity="secondary" size="small"></p-button>
+            <p-button label="Reservar asiento" severity="secondary" size="small" [disabled]="loading" (onClick)="createReservation(flight.flightCode)"></p-button>
         </div>
     }
 
 </section>
+
+<p-toast></p-toast>
