@@ -1,21 +1,42 @@
 <section class="section-container">
 
-    <p-card>
+    <form class="create-flight-form" [formGroup]="createFlightForm" (ngSubmit)="test()">
 
-        <form class="create-flight-form" [formGroup]="createFlightForm">
+        <div class="control-container">
+            <label>Aerolínea</label>
+            <p-dropdown formControlName="airlineName" [options]="airlines" optionLabel="name" placeholder="Seleccione" ></p-dropdown>
+        </div>
 
-            <div class="control-container">
-                <label>Ciudad de origen</label>
-                <p-dropdown formControlName="origin" [options]="cities" optionLabel="cityName" placeholder="Seleccion el origen"></p-dropdown>
-            </div>
+        <div class="control-container">
+            <label>Ciudad de origen</label>
+            <p-dropdown formControlName="origin" [options]="cities" optionLabel="cityName" placeholder="Seleccione"></p-dropdown>
+        </div>
 
-            <div class="control-container">
-                <label>Ciudad de destino</label>
-                <p-dropdown formControlName="destination" [options]="cities" optionLabel="cityName" placeholder="Seleccione el destino"></p-dropdown>
-            </div>
-           
+        <div class="control-container">
+            <label>Ciudad de destino</label>
+            <p-dropdown formControlName="destination" [options]="cities" optionLabel="cityName" placeholder="Seleccione"></p-dropdown>
+        </div>
 
-        </form>
-    </p-card>
+        <div class="control-container date-container">
+            <label>Fecha de salida</label>
+            <p-calendar formControlName="departureDate" [iconDisplay]="'input'" [showIcon]="true" placeholder="Seleccione"></p-calendar>
+        </div>
+
+        <div class="control-container date-container">
+            <label>Fecha de llegada</label>
+            <p-calendar formControlName="arrivalDate" [iconDisplay]="'input'" [showIcon]="true" placeholder="Seleccione"></p-calendar>
+        </div>
+
+        <div class="control-container">
+            <label>Precio del pasaje</label>
+            <p-inputNumber formControlName="flightPrice" inputId="integeronly"> </p-inputNumber>
+        </div>
+
+        <div class="submit-container">
+            <p-button [disabled]="!createFlightForm.valid" type="submit" label="Agregar nuevo vuelo" [raised]="true" severity="secondary"></p-button>
+        </div>
+
+    </form>
+    
 
 </section>
