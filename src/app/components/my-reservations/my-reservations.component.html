@@ -1,1 +1,27 @@
-<section class="section-container"></section>
+<section class="section-container">
+    @for(reservation of reservations; track reservation.flightCode){
+        <article class="reservation-card">
+
+            <span class="reservation-subcontainer">
+                <img class="ticket-icon" src="assets/flight.png" alt="ticket icon">
+                <p class="ticket-icon-text">{{reservation.airLineName | uppercase}} - {{reservation.flightCode | uppercase}}</p>
+            </span>
+
+            <span class="reservation-subcontainer">
+                <img class="ticket-icon" src="assets/route.png" alt="route icon">
+                <p class="ticket-icon-text">{{reservation.origin | uppercase}} - {{reservation.destination | uppercase}}</p>
+            </span>
+
+            <span class="reservation-subcontainer">
+                <img class="ticket-icon" src="assets/calendar.png" alt="calendar icon">
+                <p class="ticket-icon-text">{{getReadableReservationDate(reservation.departureDate)}}</p>
+            </span>
+
+            <span class="reservation-subcontainer">
+                <img class="ticket-icon" src="assets/seat.png" alt="seat icon">
+                <p class="ticket-icon-text">{{reservation.planeSeat | uppercase}}</p>
+            </span>
+
+        </article>
+    }
+</section>

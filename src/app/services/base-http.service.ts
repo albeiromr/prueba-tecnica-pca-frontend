@@ -7,6 +7,7 @@ import { AirlineModel } from '../models/airline.model';
 import { CreateFlightBody } from '../models/create-flight.model';
 import { FlightModel } from '../models/flight.model';
 import { CreateReservationModel } from '../models/create-reservation.model';
+import { ReservationModel } from '../models/reservation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class BaseHttpService {
   private _createFlightEndpoint: string = "http://localhost:5151/api/flights/create";
   private _getFlightEndpoint: string = "http://localhost:5151/api/flights";
   private _createReservationEndpoint: string = "http://localhost:5151/api/reservations/create";
+  private _getReservationsEndpoint: string = "http://localhost:5151/api/reservations";
 
   constructor(private _httclient: HttpClient) { }
 
@@ -40,6 +42,13 @@ export class BaseHttpService {
    */
   public getFlights(): Observable<BaseResponseModel<FlightModel[]>>{
     return this._httclient.get<BaseResponseModel<FlightModel[]>>(this._getFlightEndpoint)
+  }
+
+  /**
+   * Fetches all the database reservations
+   */
+  public getReservations(): Observable<BaseResponseModel<ReservationModel[]>>{
+    return this._httclient.get<BaseResponseModel<ReservationModel[]>>(this._getReservationsEndpoint)
   }
 
   /**

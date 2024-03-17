@@ -1,8 +1,45 @@
 .section-container {
     margin: 0 auto;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1050px;
     height: auto;
     min-height: 400px;
-    background: darkcyan;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+
+    .reservation-card {
+        width: 100%;
+        height: auto;
+        min-height: 150px;
+        border-radius: 8px;
+        padding: 20px;
+        border: 1px solid #e3e3e3;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        .reservation-subcontainer {
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+
+            .ticket-icon {
+                max-width: 30px;
+            }
+    
+            .ticket-icon-text {
+                margin-left: 10px;
+                color: #919191;
+                font-weight: 500;
+                font-size: 14px;
+            }
+        }
+
+        
+    }
 }
