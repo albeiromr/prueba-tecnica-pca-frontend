@@ -11,6 +11,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { DataNormailizationService } from '../../services/data-normailization.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-create-flight',
@@ -24,7 +26,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     InputNumberModule,
     ButtonModule,
     ProgressSpinnerModule,
+    ToastModule
   ],
+  providers: [MessageService],
   templateUrl: './create-flight.component.html',
   styleUrl: './create-flight.component.scss'
 })
@@ -37,7 +41,8 @@ export class CreateFlightComponent {
 
   constructor(
     private _baseHttpService: BaseHttpService, 
-    private _dataNormalizationService: DataNormailizationService
+    private _dataNormalizationService: DataNormailizationService,
+    private _messageService: MessageService
   ){
 
     this.getCities();
@@ -83,8 +88,12 @@ export class CreateFlightComponent {
         this.createFlightForm.reset();
         this.createFlightForm.enable();
         this.loading = false
+        this._messageService.add({ 
+          severity: 'success', 
+          summary: 'Bien Hecho!!', 
+          detail: 'El vuelo fue agregado exitosamente' 
+        });
       }, 1000);
-
     });
   }
   
