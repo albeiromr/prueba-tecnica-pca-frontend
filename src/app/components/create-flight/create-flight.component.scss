@@ -4,5 +4,24 @@
     max-width: 1000px;
     height: auto;
     min-height: 400px;
-    background: darkcyan;
+}
+
+.create-flight-form {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.control-container {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    label {
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
 }

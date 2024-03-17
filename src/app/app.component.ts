@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { ClientService } from './services/client.service';
-import { ClientModel } from './models/client-model';
+import { ClientModel } from './models/client.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

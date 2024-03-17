@@ -1,1 +1,21 @@
-<section class="section-container"></section>
+<section class="section-container">
+
+    <p-card>
+
+        <form class="create-flight-form" [formGroup]="createFlightForm">
+
+            <div class="control-container">
+                <label>Ciudad de origen</label>
+                <p-dropdown formControlName="origin" [options]="cities" optionLabel="cityName" placeholder="Seleccion el origen"></p-dropdown>
+            </div>
+
+            <div class="control-container">
+                <label>Ciudad de destino</label>
+                <p-dropdown formControlName="destination" [options]="cities" optionLabel="cityName" placeholder="Seleccione el destino"></p-dropdown>
+            </div>
+           
+
+        </form>
+    </p-card>
+
+</section>
