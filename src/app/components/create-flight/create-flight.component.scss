@@ -41,6 +41,11 @@
     .p-inputnumber-input {
         max-width: 150px;
     }
+
+    .p-progress-spinner {
+        max-width: 40px;
+        max-height: 40px;
+    }
 }
 
 .submit-container {
@@ -50,3 +55,4 @@
     align-items: center;
     justify-content: flex-end;
 }
+

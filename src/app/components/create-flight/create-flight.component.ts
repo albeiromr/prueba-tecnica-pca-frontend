@@ -10,6 +10,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { DataNormailizationService } from '../../services/data-normailization.service';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-create-flight',
@@ -21,7 +22,8 @@ import { DataNormailizationService } from '../../services/data-normailization.se
     CommonModule, 
     CalendarModule, 
     InputNumberModule,
-    ButtonModule 
+    ButtonModule,
+    ProgressSpinnerModule
   ],
   templateUrl: './create-flight.component.html',
   styleUrl: './create-flight.component.scss'
@@ -47,7 +49,7 @@ export class CreateFlightComponent {
       destination: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
       departureDate: new FormControl(null, [Validators.required]),
       arrivalDate: new FormControl(null, [Validators.required]),
-      flightPrice: new FormControl(0, [Validators.required, Validators.min(1000), Validators.max(100000)]),
+      flightPrice: new FormControl(0, [Validators.required, Validators.min(1000), Validators.max(100000000)]),
     });
 
   }
@@ -71,8 +73,19 @@ export class CreateFlightComponent {
    */
   public createFlight(){
     this.loading = true;
+    this.createFlightForm.disable();
     const body = this._dataNormalizationService.serializeFlightBody(this.createFlightForm.value);
-    console.log(body)
+    
+    this._baseHttpService.createFlight(body).subscribe(res => {
+      if(!res.success)throw new Error("there was an error when creating the flight in database");
+      
+      setTimeout(() => { 
+        this.createFlightForm.reset();
+        this.createFlightForm.enable();
+        this.loading = false
+      }, 1000);
+
+    });
   }
   
 }

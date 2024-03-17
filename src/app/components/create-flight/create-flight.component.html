@@ -33,7 +33,11 @@
         </div>
 
         <div class="submit-container">
-            <p-button [disabled]="!createFlightForm.valid" type="submit" label="Agregar nuevo vuelo" [raised]="true" severity="secondary"></p-button>
+            @if(!loading){
+                <p-button [disabled]="!createFlightForm.valid" type="submit" label="Agregar nuevo vuelo" [raised]="true" severity="secondary"></p-button>
+            }@else {
+                <p-progressSpinner strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+            }        
         </div>
 
     </form>
