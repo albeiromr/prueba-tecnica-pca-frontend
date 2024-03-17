@@ -23,7 +23,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CalendarModule, 
     InputNumberModule,
     ButtonModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
   ],
   templateUrl: './create-flight.component.html',
   styleUrl: './create-flight.component.scss'

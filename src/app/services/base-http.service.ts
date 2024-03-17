@@ -5,6 +5,7 @@ import { BaseResponseModel } from '../models/base-response.model';
 import { CityModel } from '../models/city.model';
 import { AirlineModel } from '../models/airline.model';
 import { CreateFlightBody } from '../models/create-flight.model';
+import { FlightModel } from '../models/flight.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class BaseHttpService {
   private _getCitiesEndpoint: string = "http://localhost:5151/api/cities";
   private _getAirlinesEndpoint: string = "http://localhost:5151/api/airlines";
   private _createFlightEndpoint: string = "http://localhost:5151/api/flights/create";
+  private _getFlightEndpoint: string = "http://localhost:5151/api/flights";
 
   constructor(private _httclient: HttpClient) { }
 
@@ -29,6 +31,13 @@ export class BaseHttpService {
    */
   public getAirlines(): Observable<BaseResponseModel<AirlineModel[]>>{
     return this._httclient.get<BaseResponseModel<AirlineModel[]>>(this._getAirlinesEndpoint)
+  }
+
+  /**
+   * Fetches all the database airlines
+   */
+  public getFlights(): Observable<BaseResponseModel<FlightModel[]>>{
+    return this._httclient.get<BaseResponseModel<FlightModel[]>>(this._getFlightEndpoint)
   }
 
   /**
