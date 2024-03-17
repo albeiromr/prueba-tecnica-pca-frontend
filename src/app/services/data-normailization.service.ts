@@ -12,7 +12,7 @@ export class DataNormailizationService {
    * serializes a new Date() javascript data tipe to 
    * the one that the backend requieres
    */
-  public serializeDate(date: Date): string {
+  public serializeDateForDb(date: Date): string {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0'); // the month start in 0
     const day = String(date.getDate()).padStart(2, '0');
@@ -28,6 +28,21 @@ export class DataNormailizationService {
   }
 
   /**
+   * serializes a new Date() javascript data tipe to 
+   * the one that the client can read
+   */
+  public serializeDateForClient(date: Date): string {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // El mes comienza desde 0
+    const year = date.getFullYear();
+  
+    // creates the string date
+    const formattedDateString = `${day}-${month}-${year}`;
+  
+    return formattedDateString;
+  }
+
+  /**
    * serializes the create flight reactive form data
    */
   public serializeFlightBody(data: CreateFlightForm): CreateFlightBody {
@@ -35,8 +50,8 @@ export class DataNormailizationService {
       airlineName: data.airlineName.name,
       origin: data.origin.cityName,
       destination: data.destination.cityName,
-      departureDate: this.serializeDate(data.departureDate),
-      arrivalDate: this.serializeDate(data.arrivalDate),
+      departureDate: this.serializeDateForDb(data.departureDate),
+      arrivalDate: this.serializeDateForDb(data.arrivalDate),
       flightPrice: data.flightPrice
     }
     return body;

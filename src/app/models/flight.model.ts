@@ -3,7 +3,7 @@ export interface FlightModel {
     flightCode: string;
     origin: string;
     destination: string;
-    departureDate: Date;
-    arrivalDate: Date;
+    departureDate: string;
+    arrivalDate: string;
     flightPrice: number;
 }

@@ -1,1 +1,21 @@
-<section class="section-container"></section>
+<section class="section-container">
+
+    <div class="header-card">
+        <p class="header-text">Ruta</p>
+        <p class="header-text">Fecha de salida</p>
+        <p class="header-text">Fecha de llegada</p>
+        <p class="header-text">Precio tiquete</p>
+    </div>
+    
+    @for(flight of flights; track flight.flightCode){
+        <div class="flight-card">
+            <img src="assets/plane.png" alt="plane icon">
+            <p class="flight-text">{{flight.origin}} - {{flight.destination}}</p>
+            <p class="flight-text">{{getReadableDate(flight.departureDate)}}</p>
+            <p class="flight-text">{{getReadableDate(flight.arrivalDate)}}</p>
+            <p class="flight-text">${{flight.flightPrice}}</p>
+            <p-button label="Reservar asiento" severity="secondary" size="small"></p-button>
+        </div>
+    }
+
+</section>
