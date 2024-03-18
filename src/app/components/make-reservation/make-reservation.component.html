@@ -37,7 +37,7 @@
             <p class="flight-text">{{flight.origin}} - {{flight.destination}}</p>
             <p class="flight-text">{{getReadableDate(flight.departureDate)}}</p>
             <p class="flight-text">{{getReadableDate(flight.arrivalDate)}}</p>
-            <p class="flight-text">${{flight.flightPrice}}</p>
+            <p class="flight-text">{{flight.flightPrice | currency}}</p>
             <p-button label="Reservar asiento" severity="secondary" size="small" [disabled]="loading" (onClick)="createReservation(flight.flightCode)"></p-button>
         </div>
     }

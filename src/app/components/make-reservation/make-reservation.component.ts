@@ -10,6 +10,7 @@ import { MessageService } from 'primeng/api';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CityModel } from '../../models/city.model';
 import { DropdownModule } from 'primeng/dropdown';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-make-reservation',
@@ -18,7 +19,8 @@ import { DropdownModule } from 'primeng/dropdown';
     ButtonModule, 
     ToastModule, 
     ReactiveFormsModule,
-    DropdownModule
+    DropdownModule,
+    CommonModule
   ],
   providers: [MessageService],
   templateUrl: './make-reservation.component.html',
