@@ -1,8 +1,21 @@
 .section-container {
     margin: 0 auto;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1050px;
     height: auto;
     min-height: 400px;
     background: darkcyan;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+
+    .pie-chart {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

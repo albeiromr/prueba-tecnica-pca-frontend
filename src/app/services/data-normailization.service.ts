@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CreateFlightBody, CreateFlightForm } from '../models/create-flight.model';
+import { AirlineModel } from '../models/airline.model';
+import { AirlineWithFlightCount } from '../models/airline-flight-count.model';
 
 @Injectable({
   providedIn: 'root'
@@ -55,5 +57,18 @@ export class DataNormailizationService {
       flightPrice: data.flightPrice
     }
     return body;
+  }
+
+  /**
+   * Returns the first four airlines with more flights
+   */
+  getTopAirlines(airlines: AirlineModel[]): AirlineWithFlightCount[] {
+    // Sort the airlines by the number of flights (from highest to lowest)
+    const sortedAirlines = airlines.sort((a, b) => b.flightsCount - a.flightsCount);
+  
+    //gets the first four airlines with more flights
+    const topAirlines = sortedAirlines.slice(0, 4).map(({ name, flightsCount }) => ({ airlineName: name, flightCount: flightsCount }));
+  
+    return topAirlines;
   }
 }
