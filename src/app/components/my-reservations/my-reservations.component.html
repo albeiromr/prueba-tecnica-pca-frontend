@@ -22,6 +22,15 @@
                 <p class="ticket-icon-text">{{reservation.planeSeat | uppercase}}</p>
             </span>
 
+            <div class="reservation-footer">
+                <img class="qr-icon" src="assets/qr.png" alt="calendar icon">
+                <div class="reservation-client-info">
+                    <p class="reservation-client-info__name">{{reservation.clientName | uppercase}} {{reservation.clientLastName | uppercase}}</p>
+                    <p class="reservation-client-info__email" >{{reservation.clientEmail | lowercase}}</p>
+                </div>
+                
+            </div>
+
         </article>
     }
 </section>

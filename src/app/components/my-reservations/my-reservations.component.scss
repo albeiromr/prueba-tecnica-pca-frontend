@@ -14,13 +14,14 @@
         height: auto;
         min-height: 150px;
         border-radius: 8px;
-        padding: 20px;
+        padding: 20px 20px 80px 20px;
         border: 1px solid #e3e3e3;
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
         align-items: flex-start;
         justify-content: flex-start;
+        position: relative;
 
         .reservation-subcontainer {
             width: 40%;
@@ -31,7 +32,7 @@
             .ticket-icon {
                 max-width: 30px;
             }
-    
+
             .ticket-icon-text {
                 margin-left: 10px;
                 color: #919191;
@@ -40,6 +41,46 @@
             }
         }
 
-        
+
+    }
+
+    .reservation-footer {
+        position: absolute;
+        height: 60px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: rgb(124, 124, 124);
+        border-radius: 0 0 8px 8px;
+        padding: 5px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .qr-icon {
+            max-width: 45px;
+        }
+
+        .reservation-client-info {
+            width: 60%;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+
+            &__name {
+                color: white;
+                margin: 0;
+                font-size: 18px;
+            }
+
+            &__email {
+                color: rgb(224, 224, 224);
+                margin: 0;
+                font-size: 14px;
+            }
+        }
     }
 }
