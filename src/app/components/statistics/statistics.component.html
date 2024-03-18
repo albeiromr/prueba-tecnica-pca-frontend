@@ -4,4 +4,19 @@
         <p-chart type="pie" [data]="payData" [options]="payOptions"></p-chart>
     </div>
 
+    <div class="pie-chart-explanation">
+        <h3>Estadísticas</h3>
+
+        <p>Se realizó el análisis de <b>{{totalAirLines}}</b> 
+            aerolíneas, de las cuales de extrajeron las 4 que mas vuelos han generado. Estos
+            datos pueden verse en el gráfico de la izquierda y a continuación.
+        </p>
+
+        @for(airline of sortedAirlins; track airline.airLineName){
+            <p>{{airline.airLineName | uppercase}}: <b>{{airline.flightCount}}</b> vuelos. </p>
+        }
+
+        
+    </div>
+
 </section>

@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { DataNormailizationService } from '../../services/data-normailization.service';
 import { BaseHttpService } from '../../services/base-http.service';
 import { AirlineWithFlightCount } from '../../models/airline-flight-count.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-statistics',
   standalone: true,
-  imports: [ChartModule],
+  imports: [ChartModule, CommonModule],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.scss'
 })
-export class StatisticsComponent implements OnInit {
+export class StatisticsComponent {
 
   public payData: any;
   public payOptions: any;
   public sortedAirlins: AirlineWithFlightCount[] = [];
+  public totalAirLines: number = 0;
 
   constructor(
     private _dataNormalizationService: DataNormailizationService,
@@ -24,14 +26,12 @@ export class StatisticsComponent implements OnInit {
     this.getAirlines();
   }
 
-  ngOnInit(): void {
-    setTimeout(() => {this.setupPieChart()}, 100)
-  }
-
   public getAirlines(): void {
     this._baseHttpService.getAirlines().subscribe(res => {
       if(!res.success)throw new Error("there was an error when fetching the database airlines")
       this.sortedAirlins = this._dataNormalizationService.getTopAirlines(res.data);
+      this.totalAirLines = res.data.length;
+      this.setupPieChart();
     })
   }
 

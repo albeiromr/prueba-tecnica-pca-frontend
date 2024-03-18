@@ -26,7 +26,6 @@ export class MyReservationsComponent {
     this._baseHttpService.getReservations().subscribe(res => {
       if(!res.success)throw new Error("there was an error when fetching the database reservations")
       this.reservations = res.data;
-    console.log(res.data)
     })
   }
 
