@@ -29,6 +29,7 @@ export class MakeReservationComponent {
   public filterFlightForm: FormGroup;
 
   public flights: FlightModel[] = [];
+  public filterdFlightArray: FlightModel[] = [];
   public cities: CityModel[] = [];
   public loading: boolean = false;
 
@@ -47,14 +48,44 @@ export class MakeReservationComponent {
     });
   }
 
-  public createFlight(){
+  /**
+   * filter all flights by the given parameters
+   */
+  public async filterFlghts(){
+    const origin: string | undefined = this.filterFlightForm.value.origin?.cityName;
+    const destination: string | undefined = this.filterFlightForm.value.destination?.cityName;
 
+    if(origin === undefined && destination === undefined ) this.filterdFlightArray = this.flights;
+
+    if(origin !== undefined && destination === undefined){
+      const filteredFlights = this.flights.filter(f => f.origin === origin);
+      this.filterdFlightArray = filteredFlights;
+    }
+
+    if(origin === undefined && destination !== undefined){
+      const filteredFlights = this.flights.filter(f => f.destination === destination);
+      this.filterdFlightArray = filteredFlights;
+    }
+
+    if(origin !== undefined && destination !== undefined){
+      const filteredFlights = this.flights.filter(f => f.destination === destination && f.origin === origin);
+      this.filterdFlightArray = filteredFlights;
+    }
+  }
+
+  /**
+   * Cleans all flights filter form filters and reload all the flights into the database
+   */
+  public cleanFilters(){
+    this.filterFlightForm.reset();
+    this.filterdFlightArray = this.flights;
   }
 
   public getFlights(): void {
     this._baseHttpService.getFlights().subscribe(res => {
       if(!res.success)throw new Error("there was an error when fetching the database flights");
       this.flights = res.data;
+      this.filterdFlightArray = res.data;
     })
   }
 

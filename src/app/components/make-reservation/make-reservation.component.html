@@ -1,22 +1,22 @@
 <section class="section-container">
 
-    <form class="filter-flights-form" [formGroup]="filterFlightForm" (ngSubmit)="createFlight()">
+    <form class="filter-flights-form" [formGroup]="filterFlightForm" (ngSubmit)="filterFlghts()">
         <span>
             <p class="filter-by-label">Filtrar vuelos por:</p>
         </span>
 
         <span class="p-float-label">
             <p-dropdown inputId="float-label-origin" formControlName="origin" [options]="cities" optionLabel="cityName" placeholder="Seleccione ciudad"></p-dropdown>
-            <label for="float-label-origin" >Ciudad de origen</label>
+            <label for="float-label-origin" >Origen</label>
         </span>
 
         <span class="p-float-label">
             <p-dropdown inputId="float-label-destination" formControlName="destination" [options]="cities" optionLabel="cityName" placeholder="Seleccione ciudad"></p-dropdown>
-            <label for="float-label-destination" >Ciudad de destino</label>
+            <label for="float-label-destination" >Destino</label>
         </span>
 
         <div class="filter-buttons-container">
-            <p-button [disabled]="!filterFlightForm.dirty" label="Limpiar" [text]="true" severity="secondary"></p-button>
+            <p-button [disabled]="!filterFlightForm.dirty" label="Limpiar" [text]="true" severity="secondary" (onClick)="cleanFilters()"></p-button>
 
             <p-button [disabled]="!filterFlightForm.dirty" type="submit" label="Filtrar" [raised]="true" severity="primary"></p-button>
         </div>
@@ -31,7 +31,7 @@
         <p class="header-text">Precio tiquete</p>
     </div>
 
-    @for(flight of flights; track flight.flightCode){
+    @for(flight of filterdFlightArray; track flight.flightCode){
         <div class="flight-card">
             <img src="assets/plane.png" alt="plane icon">
             <p class="flight-text">{{flight.origin}} - {{flight.destination}}</p>
