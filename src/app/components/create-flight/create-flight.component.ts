@@ -93,7 +93,7 @@ export class CreateFlightComponent {
           summary: 'Bien Hecho!!', 
           detail: 'El vuelo fue agregado exitosamente' 
         });
-      }, 1000);
+      }, 300);
     });
   }
   

@@ -1,5 +1,29 @@
 <section class="section-container">
 
+    <form class="filter-flights-form" [formGroup]="filterFlightForm" (ngSubmit)="createFlight()">
+        <span>
+            <p class="filter-by-label">Filtrar vuelos por:</p>
+        </span>
+
+        <span class="p-float-label">
+            <p-dropdown inputId="float-label-origin" formControlName="origin" [options]="cities" optionLabel="cityName" placeholder="Seleccione ciudad"></p-dropdown>
+            <label for="float-label-origin" >Ciudad de origen</label>
+        </span>
+
+        <span class="p-float-label">
+            <p-dropdown inputId="float-label-destination" formControlName="destination" [options]="cities" optionLabel="cityName" placeholder="Seleccione ciudad"></p-dropdown>
+            <label for="float-label-destination" >Ciudad de destino</label>
+        </span>
+
+        <div class="filter-buttons-container">
+            <p-button [disabled]="!filterFlightForm.dirty" label="Limpiar" [text]="true" severity="secondary"></p-button>
+
+            <p-button [disabled]="!filterFlightForm.dirty" type="submit" label="Filtrar" [raised]="true" severity="primary"></p-button>
+        </div>
+        
+    </form>
+
+
     <div class="header-card">
         <p class="header-text">Ruta</p>
         <p class="header-text">Fecha de salida</p>

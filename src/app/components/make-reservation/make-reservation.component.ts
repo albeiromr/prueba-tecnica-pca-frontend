@@ -7,18 +7,29 @@ import { CreateReservationModel } from '../../models/create-reservation.model';
 import { ClientService } from '../../services/client.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CityModel } from '../../models/city.model';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-make-reservation',
   standalone: true,
-  imports: [ButtonModule, ToastModule],
+  imports: [
+    ButtonModule, 
+    ToastModule, 
+    ReactiveFormsModule,
+    DropdownModule
+  ],
   providers: [MessageService],
   templateUrl: './make-reservation.component.html',
   styleUrl: './make-reservation.component.scss'
 })
 export class MakeReservationComponent {
 
+  public filterFlightForm: FormGroup;
+
   public flights: FlightModel[] = [];
+  public cities: CityModel[] = [];
   public loading: boolean = false;
 
   constructor(
@@ -28,12 +39,29 @@ export class MakeReservationComponent {
     private _messageService: MessageService
   ){
     this.getFlights();
+    this.getCities();
+
+    this.filterFlightForm = new FormGroup({
+      origin: new FormControl(null, [Validators.minLength(5), Validators.maxLength(20)]),
+      destination: new FormControl(null, [Validators.minLength(5), Validators.maxLength(20)])
+    });
+  }
+
+  public createFlight(){
+
   }
 
   public getFlights(): void {
     this._baseHttpService.getFlights().subscribe(res => {
       if(!res.success)throw new Error("there was an error when fetching the database flights");
       this.flights = res.data;
+    })
+  }
+
+  public getCities(): void {
+    this._baseHttpService.getCities().subscribe(res => {
+      if(!res.success)throw new Error("there was an error when fetching the database cities")
+      this.cities = res.data;
     })
   }
 
@@ -65,7 +93,7 @@ export class MakeReservationComponent {
           summary: 'Bien Hecho!!', 
           detail: 'Tu reservación se generó exitosamente' 
         });
-      }, 1000);
+      }, 300);
     });
   }
 }

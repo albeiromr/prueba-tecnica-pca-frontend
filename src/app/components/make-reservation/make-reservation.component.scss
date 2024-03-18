@@ -59,3 +59,44 @@
         color: white; 
     }
 }
+
+.filter-flights-form {
+    width: 100%;
+    height: auto;
+    min-height: 60px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+    align-items: center;
+    justify-items: end;
+    background: rgb(255, 255, 255);
+
+    @media screen and (max-width: 1090px){
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.filter-buttons-container{
+    width: 210px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    @media screen and (max-width: 1090px){
+        grid-column: 3/4;
+    }
+}
+
+.filter-by-label {
+    margin: 0;
+        text-align: left;
+        font-size: 16px;
+        text-transform:capitalize;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 500;
+        color: #747474; 
+}
