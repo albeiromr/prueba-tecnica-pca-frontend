@@ -1,4 +1,4 @@
 export interface AirlineWithFlightCount {
-    airlineName: string;
+    airLineName: string;
     flightCount: number;
 }

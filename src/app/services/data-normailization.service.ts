@@ -67,7 +67,7 @@ export class DataNormailizationService {
     const sortedAirlines = airlines.sort((a, b) => b.flightsCount - a.flightsCount);
   
     //gets the first four airlines with more flights
-    const topAirlines = sortedAirlines.slice(0, 4).map(({ name, flightsCount }) => ({ airlineName: name, flightCount: flightsCount }));
+    const topAirlines = sortedAirlines.slice(0, 4).map(({ name, flightsCount }) => ({ airLineName: name, flightCount: flightsCount }));
   
     return topAirlines;
   }
