@@ -13,13 +13,14 @@ import { ReservationModel } from '../models/reservation.model';
   providedIn: 'root'
 })
 export class BaseHttpService {
+  private _baseUrl: string = "http://localhost:5151";
 
-  private _getCitiesEndpoint: string = "http://localhost:5151/api/cities";
-  private _getAirlinesEndpoint: string = "http://localhost:5151/api/airlines";
-  private _createFlightEndpoint: string = "http://localhost:5151/api/flights/create";
-  private _getFlightEndpoint: string = "http://localhost:5151/api/flights";
-  private _createReservationEndpoint: string = "http://localhost:5151/api/reservations/create";
-  private _getReservationsEndpoint: string = "http://localhost:5151/api/reservations";
+  private _getCitiesEndpoint: string = `${this._baseUrl}/api/cities`;
+  private _getAirlinesEndpoint: string = `${this._baseUrl}/api/airlines`;
+  private _createFlightEndpoint: string = `${this._baseUrl}/api/flights/create`;
+  private _getFlightEndpoint: string = `${this._baseUrl}/api/flights`;
+  private _createReservationEndpoint: string = `${this._baseUrl}/api/reservations/create`;
+  private _getReservationsEndpoint: string = `${this._baseUrl}/api/reservations`;
 
   constructor(private _httclient: HttpClient) { }
 
